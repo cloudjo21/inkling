@@ -1,0 +1,7 @@
+oauth2client
+pandas-gbq
+pendulum==2.1.2
+pymysql
+shap
+apache-airflow-providers-google
+pandas==2.1.4

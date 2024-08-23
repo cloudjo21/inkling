@@ -1,0 +1,24 @@
+#!/bin/bash
+
+export PKG_NAME=inkling
+export PY_VERSION_SYMBOL=$1
+export OLD_PY_VERSION_SYMBOL=py38
+
+
+if [[ ${PY_VERSION_SYMBOL} = "py311" ]]
+    then
+    cp setup.envs/setup.${PY_VERSION_SYMBOL}.py setup.py
+
+    python setup.py sdist upload -r internal
+
+    cp setup.envs/setup.${OLD_PY_VERSION_SYMBOL}.py setup.py
+
+    echo "${PKG_NAME}+${PY_VERSION_SYMBOL} deployment completed!"
+else
+    cp setup.envs/setup.${OLD_PY_VERSION_SYMBOL}.py setup.py
+
+    python setup.py sdist upload -r internal
+
+    echo "${PKG_NAME}+${OLD_PY_VERSION_SYMBOL} deployment completed!"
+fi
+
